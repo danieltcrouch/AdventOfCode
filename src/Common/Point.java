@@ -1,7 +1,6 @@
 package Common;
 
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class Point
 {
@@ -34,6 +33,12 @@ public class Point
     public Integer getArrayY()
     {
         return getX();
+    }
+
+    @Override
+    public String toString()
+    {
+        return getX() + "," + getY();
     }
 
     @Override

@@ -1,4 +1,4 @@
-import day9.MarbleService;
+import day11.PowerGridService;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -10,7 +10,7 @@ public class Main
     //https://adventofcode.com/2018/
     public static void main( String[] args )
     {
-        String answer = MarbleService.findScore( readValues() ) + "";
+        String answer = PowerGridService.findPowerBlock( readValues() ) + "";
         System.out.println( answer );
     }
 
