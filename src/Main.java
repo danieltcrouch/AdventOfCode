@@ -1,16 +1,16 @@
+import day9.MarbleService;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
-import static day10.PositionService.displaySeconds;
 
 public class Main
 {
     //https://adventofcode.com/2018/
     public static void main( String[] args )
     {
-        String answer = displaySeconds( readValues() ) + "";
+        String answer = MarbleService.findScore( readValues() ) + "";
         System.out.println( answer );
     }
 
