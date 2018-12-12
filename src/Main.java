@@ -1,4 +1,4 @@
-import day11.PowerGridService;
+import day12.PlantService;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -10,7 +10,7 @@ public class Main
     //https://adventofcode.com/2018/
     public static void main( String[] args )
     {
-        String answer = PowerGridService.findPowerBlock( readValues() ) + "";
+        String answer = PlantService.findPlantPots( readValues() ) + "";
         System.out.println( answer );
     }
 

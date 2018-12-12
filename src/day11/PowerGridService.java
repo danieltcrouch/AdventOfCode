@@ -8,7 +8,7 @@ public class PowerGridService
 {
     //Puzzle 1 & 2
     //235,63
-    //
+    //229,251,16
     public static String findPowerBlock( List<String> values )
     {
         String serialNumber = values.get( 0 );
