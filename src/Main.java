@@ -10,7 +10,7 @@ public class Main
     //https://adventofcode.com/2018/
     public static void main( String[] args )
     {
-        String answer = PlantService.findPlantPots( readValues() ) + "";
+        String answer = PlantService.findPlantPotsConvergence( readValues() ) + "";
         System.out.println( answer );
     }
 
