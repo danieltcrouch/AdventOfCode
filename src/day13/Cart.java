@@ -2,9 +2,12 @@ package day13;
 
 import Common.Point;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-public class Cart
+public class Cart implements Comparable
 {
     public enum Direction
     {
@@ -75,6 +78,13 @@ public class Cart
     private Direction direction;
     private Turn lastTurn;
 
+    public Cart()
+    {
+        this.location = null;
+        this.direction = null;
+        this.lastTurn = null;
+    }
+
     public Cart( Point location, Direction direction, Turn lastTurn )
     {
         this.location = location;
@@ -126,19 +136,22 @@ public class Cart
         getLocation().setY( y );
     }
 
-    public static Cart getCrashed( List<Cart> carts )
+    public static Point getCrashed( List<Cart> carts )
     {
-        return carts.stream().filter( cart -> carts.stream().filter( innerCart -> innerCart != cart ).anyMatch( innerCart -> cart.hasCrashed( innerCart ) ) ).findAny().orElse( null );
+        List<Point> locations = carts.stream().map( Cart::getLocation ).collect( Collectors.toList() );
+        return carts.stream().filter( c -> Collections.frequency( locations, c.getLocation() ) > 1 ).findAny().orElse( new Cart() ).getLocation();
     }
 
     public static boolean hasCrashed( List<Cart> carts )
     {
-        return carts.stream().anyMatch( cart -> carts.stream().filter( innerCart -> innerCart != cart ).anyMatch( innerCart -> cart.hasCrashed( innerCart ) ) );
+        List<Point> locations = carts.stream().map( Cart::getLocation ).collect( Collectors.toList() );
+        return carts.stream().anyMatch( c -> Collections.frequency( locations, c.getLocation() ) > 1 );
     }
 
-    private boolean hasCrashed( Cart cart )
+    public static boolean hasCrashed( List<Cart> carts, Cart cart )
     {
-        return getLocation().equals( cart.getLocation() );
+        List<Point> locations = carts.stream().map( Cart::getLocation ).collect( Collectors.toList() );
+        return Collections.frequency( locations, cart.getLocation() ) > 1;
     }
 
     private static Direction getDirection( char c )
@@ -179,6 +192,26 @@ public class Cart
         case right:
             result = '>';
             break;
+        }
+        return result;
+    }
+
+    @Override
+    public int compareTo( Object obj )
+    {
+        int result;
+        Cart c2 = (Cart)obj;
+        if ( getLocation().equals( c2.getLocation() ) )
+        {
+            result = 0;
+        }
+        else if ( !getLocation().getY().equals( c2.getLocation().getY() ) )
+        {
+            result = getLocation().getY() - c2.getLocation().getY();
+        }
+        else
+        {
+            result = getLocation().getX() - c2.getLocation().getX();
         }
         return result;
     }

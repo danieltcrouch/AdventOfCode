@@ -10,7 +10,7 @@ public class Main
     //https://adventofcode.com/2018/
     public static void main( String[] args )
     {
-        String answer = TrackService.findCrash( readValues() ) + "";
+        String answer = TrackService.findFinalCart( readValues() ) + "";
         System.out.println( answer );
     }
 
